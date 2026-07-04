@@ -25,6 +25,7 @@ export default function Home() {
               "radial-gradient(120% 80% at 70% 10%, rgba(127,163,147,0.14), transparent 60%), radial-gradient(90% 60% at 20% 90%, rgba(217,165,150,0.10), transparent 55%)",
           }}
         />
+        <div aria-hidden="true" className="hero-breath absolute inset-0 pointer-events-none" />
         <div className="relative mx-auto max-w-6xl px-5 md:px-8 pb-16 md:pb-24 pt-36 w-full">
           <Reveal>
             <p className="kicker kicker-light mb-6">Massage Spa · Bloomfield, New Jersey</p>

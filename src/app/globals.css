@@ -120,3 +120,19 @@ h1, h2, h3, .display {
 @media (min-width: 768px) {
   .svc-row { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 32px; align-items: baseline; }
 }
+
+/* hero breath — the signature's first appearance: a slow warm swell behind the headline */
+@keyframes hero-breath {
+  0%, 100% { opacity: 0.05; transform: scale(0.96); }
+  45%      { opacity: 0.16; transform: scale(1.03); }
+  60%      { opacity: 0.16; transform: scale(1.03); }
+}
+.hero-breath {
+  background: radial-gradient(55% 45% at 32% 62%, rgba(217, 165, 150, 0.55), transparent 70%);
+  animation: hero-breath 9s ease-in-out infinite;
+  transform-origin: 32% 62%;
+  will-change: opacity, transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-breath { animation: none; opacity: 0.1; }
+}

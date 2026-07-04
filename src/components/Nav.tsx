@@ -23,17 +23,30 @@ export default function Nav() {
         }`}
       >
         <nav className="mx-auto max-w-6xl px-5 md:px-8 flex items-center justify-between h-16">
-          <a href="#top" className="display text-lg md:text-xl tracking-tight text-pine">
+          <a
+            href="#top"
+            className={`display text-lg md:text-xl tracking-tight transition-colors duration-500 ${
+              scrolled ? "text-pine" : "text-linen"
+            }`}
+          >
             Top Health <span className="italic text-blush-deep">Spa</span>
           </a>
-          <div className="hidden md:flex items-center gap-8 text-[13px] font-medium tracking-[0.14em] uppercase text-pine/70">
+          <div
+            className={`hidden md:flex items-center gap-8 text-[13px] font-medium tracking-[0.14em] uppercase transition-colors duration-500 ${
+              scrolled ? "text-pine/70" : "text-linen/80"
+            }`}
+          >
             <a href="#ritual" className="hover:text-blush-deep transition-colors">The Ritual</a>
             <a href="#table" className="hover:text-blush-deep transition-colors">The Table</a>
             <a href="#visit" className="hover:text-blush-deep transition-colors">Visit</a>
           </div>
           <a
             href={TEL}
-            className="hidden sm:inline-flex items-center gap-2 rounded-full bg-pine text-linen px-5 py-2 text-sm font-medium hover:bg-pine-3 transition-colors"
+            className={`hidden sm:inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-medium transition-colors duration-500 ${
+              scrolled
+                ? "bg-pine text-linen hover:bg-pine-3"
+                : "bg-linen text-pine hover:bg-sand"
+            }`}
           >
             <PhoneIcon />
             {PHONE}
@@ -41,7 +54,9 @@ export default function Nav() {
           <a
             href={TEL}
             aria-label={`Call Top Health Spa at ${PHONE}`}
-            className="sm:hidden inline-flex items-center justify-center rounded-full bg-pine text-linen"
+            className={`sm:hidden inline-flex items-center justify-center rounded-full transition-colors duration-500 ${
+              scrolled ? "bg-pine text-linen" : "bg-linen text-pine"
+            }`}
             style={{ width: 40, height: 40 }}
           >
             <PhoneIcon />
