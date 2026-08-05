@@ -3,10 +3,11 @@ import Nav from "../components/Nav";
 import SmoothScroll from "../components/SmoothScroll";
 import Breath from "../components/Breath";
 import Reveal from "../components/Reveal";
+import CallOrText from "../components/CallOrText";
+import { site } from "@/lib/site";
 
-const PHONE = "(973) 743-5282";
-const TEL = "tel:+19737435282";
-const ADDRESS = "28 Washington St, Bloomfield, NJ 07003";
+const PHONE = site.phone;
+const ADDRESS = site.address;
 
 export default function Home() {
   return (
@@ -44,12 +45,15 @@ export default function Home() {
                 that belongs to no one but you.
               </p>
               <div className="flex flex-col gap-3">
-                <a
-                  href={TEL}
-                  className="inline-flex w-fit items-center gap-3 rounded-full bg-blush text-pine px-7 py-3.5 font-medium hover:bg-blush-deep hover:text-linen transition-colors"
+                <CallOrText
+                  phone={PHONE}
+                  smsBody={site.smsBody}
+                  align="left"
+                  className="w-fit"
+                  triggerClassName="inline-flex w-fit items-center gap-3 rounded-full bg-blush text-pine px-7 py-3.5 font-medium hover:bg-blush-deep hover:text-linen transition-colors"
                 >
-                  Call {PHONE}
-                </a>
+                  Call or text {PHONE}
+                </CallOrText>
                 <p className="text-sm text-linen/55">Open late · 7 days · walk-ins welcome to call ahead</p>
               </div>
             </div>
@@ -112,7 +116,7 @@ export default function Home() {
             <div className="border-t border-(--hairline-dark)" />
             <Reveal>
               <p className="mt-6 text-sm text-sand-dim">
-                Session lengths and rates by phone — call {PHONE} and ask.
+                Session lengths and rates by phone — call or text {PHONE} and ask.
               </p>
             </Reveal>
           </div>
@@ -160,12 +164,20 @@ export default function Home() {
                 Open late, seven days a week — which means the massage can happen
                 after work, not instead of it. One call reserves the table.
               </p>
-              <a
-                href={TEL}
-                className="mt-9 inline-flex items-center gap-3 rounded-full bg-blush text-pine px-8 py-4 font-medium text-lg hover:bg-blush-deep hover:text-linen transition-colors"
-              >
-                Call {PHONE}
-              </a>
+              <div className="mt-9 flex flex-wrap items-center gap-3">
+                <a
+                  href={site.phoneHref}
+                  className="inline-flex items-center gap-3 rounded-full bg-blush text-pine px-8 py-4 font-medium text-lg hover:bg-blush-deep hover:text-linen transition-colors"
+                >
+                  Call {PHONE}
+                </a>
+                <a
+                  href={site.smsHref}
+                  className="inline-flex items-center gap-3 rounded-full border border-linen/35 text-linen px-8 py-4 font-medium text-lg hover:border-blush hover:text-blush transition-colors"
+                >
+                  <span className="display italic">Or text us</span>
+                </a>
+              </div>
             </Reveal>
           </div>
           <Reveal delay={180}>
@@ -203,9 +215,13 @@ export default function Home() {
                   </div>
                   <div>
                     <dt className="kicker text-[10px]! mb-1">Phone</dt>
-                    <dd>
-                      <a href={TEL} className="text-lg underline decoration-(--blush) underline-offset-4 hover:text-blush-deep transition-colors">
+                    <dd className="text-lg">
+                      <a href={site.phoneHref} className="underline decoration-(--blush) underline-offset-4 hover:text-blush-deep transition-colors">
                         {PHONE}
+                      </a>
+                      <span className="text-sand-dim"> · </span>
+                      <a href={site.smsHref} className="display italic underline decoration-(--blush) underline-offset-4 hover:text-blush-deep transition-colors">
+                        text instead
                       </a>
                     </dd>
                   </div>
@@ -261,7 +277,7 @@ export default function Home() {
           <p className="display text-linen text-lg">
             Top Health <span className="italic text-blush">Spa</span>
           </p>
-          <p>{ADDRESS} · <a href={TEL} className="hover:text-blush transition-colors">{PHONE}</a></p>
+          <p>{ADDRESS} · <a href={site.phoneHref} className="hover:text-blush transition-colors">{PHONE}</a></p>
           <p>
             built by{" "}
             <a

@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
-const PHONE = "(973) 743-5282";
-const TEL = "tel:+19737435282";
+import CallOrText from "./CallOrText";
+import { site } from "@/lib/site";
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -40,39 +39,40 @@ export default function Nav() {
             <a href="#table" className="hover:text-blush-deep transition-colors">The Table</a>
             <a href="#visit" className="hover:text-blush-deep transition-colors">Visit</a>
           </div>
-          <a
-            href={TEL}
-            className={`hidden sm:inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-medium transition-colors duration-500 ${
+          <CallOrText
+            phone={site.phone}
+            smsBody={site.smsBody}
+            className="hidden sm:block"
+            triggerClassName={`inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-medium transition-colors duration-500 ${
               scrolled
                 ? "bg-pine text-linen hover:bg-pine-3"
                 : "bg-linen text-pine hover:bg-sand"
             }`}
-          >
-            <PhoneIcon />
-            {PHONE}
-          </a>
-          <a
-            href={TEL}
-            aria-label={`Call Top Health Spa at ${PHONE}`}
-            className={`sm:hidden inline-flex items-center justify-center rounded-full transition-colors duration-500 ${
+          />
+          <CallOrText
+            phone={site.phone}
+            smsBody={site.smsBody}
+            className="sm:hidden"
+            triggerClassName={`inline-flex items-center justify-center rounded-full transition-colors duration-500 h-10 w-10 ${
               scrolled ? "bg-pine text-linen" : "bg-linen text-pine"
             }`}
-            style={{ width: 40, height: 40 }}
           >
             <PhoneIcon />
-          </a>
+          </CallOrText>
         </nav>
       </header>
 
-      {/* fixed mobile call dock — collapses to a thumb circle */}
-      <a
-        href={TEL}
-        aria-label={`Call Top Health Spa at ${PHONE}`}
-        className="sm:hidden fixed bottom-5 right-5 z-50 inline-flex items-center justify-center rounded-full bg-blush-deep text-linen shadow-lg"
-        style={{ width: 52, height: 52 }}
+      {/* fixed mobile dock — the thumb circle opens the same call-or-text choice */}
+      <CallOrText
+        phone={site.phone}
+        smsBody={site.smsBody}
+        className="sm:hidden fixed bottom-5 right-5 z-50"
+        placement="up"
+        triggerClassName="inline-flex h-[52px] w-[52px] items-center justify-center rounded-full bg-blush-deep text-linen shadow-lg"
       >
         <PhoneIcon />
-      </a>
+      </CallOrText>
+
     </>
   );
 }
